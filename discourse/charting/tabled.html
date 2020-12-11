@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+.image {width: 400px;}
+</style>
+<title></title>
+</head>
+<body>
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8">
+</script>
+<script>
+
+
+dd = [['data/im_1960.png', 'data/imr_1960.png'], ['data/im_1970.png', 'data/imr_1970.png'], ['data/im_1980.png', 'data/imr_1980.png'], ['data/im_1990.png', 'data/imr_1990.png', 'data/iom_1990.png'], ['data/im_2000.png', 'data/imr_2000.png','data/iom_2000.png'], ['data/im_2010.png', 'data/imr_2010.png','data/iom_2010.png']]
+
+
+  var tr = d3.select("body")
+    .append("table")
+    .selectAll("tr")
+    .data(dd)
+    .enter().append("tr");
+
+  var td = tr.selectAll("td")
+    .data(function(d) { return d; })
+    .enter().append("td")
+      .text(function(d) { return d.slice(5, -4); })
+      .append("img")
+        .attr("src", function(d) { return d; })
+        .attr("class", 'image');
+
+</script>
+</body>
+</html>
