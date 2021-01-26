@@ -5,16 +5,13 @@ Created on Wed Sep  6 16:41:16 2017
 @author: rikhoekstra
 """
 import os
-from unicodecsv import DictReader
-from wiley import *
+import nltk
+#from unicodecsv import DictReader
+#from wiley import *
 from nltk.corpus import stopwords
 
 stopwords = stopwords.words('dutch')
 tokenizer = nltk.word_tokenize
-
-basedir = '/Users/rikhoekstra/surfdrive/tvg/'
-infl = open(os.path.join(basedir, 'tvg_all.csv'))
-r = DictReader(infl)
 
 
 dl = [row for row in r]
@@ -47,7 +44,7 @@ for k in txtout.keys():
 
 
 wordclouds = {}
-ks = txtout 
+ks = txtout
 for k in ks:
     wordcloud = WordCloud(font_path='/Library/Fonts/Verdana.ttf',
                           relative_scaling=1.0,
