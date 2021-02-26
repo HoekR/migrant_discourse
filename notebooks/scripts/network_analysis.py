@@ -114,17 +114,23 @@ def extract_record_entities(record):
 
 def make_bibliographic_record(volume, authors):
     record = {
+        'article_title': None,
         'article_doi': None,
+        'article_author': None,
+        'article_author_index_name': None,
+        'article_author_affiliation': None,
         'article_page_range': None,
         'article_pub_date': str(volume['year']),
         'article_pub_year': volume['year'],
-        'journal': volume['series'],
-        'volume': volume['volume'],
-        'issue_pub_date': str(volume['year']),
-        'issue_pub_year': volume['year'],
+        'issue_section': None,
+        'issue_number': None,
         'issue_title': None,
         'issue_page_range': None,
-        'publisher': 'REMP',
+        'issue_pub_date': str(volume['year']),
+        'issue_pub_year': volume['year'],
+        'volume': volume['volume'],
+        'journal': volume['series'],
+        'publisher': 'REMP'
     }
     if authors[0]['entity_role'] == 'article_author':
         record['issue_section'] = 'article'

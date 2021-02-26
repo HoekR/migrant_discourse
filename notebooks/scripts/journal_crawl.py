@@ -184,13 +184,13 @@ def extract_wiley_issue_details(issue_soup: BeautifulSoup) -> Dict[str, Union[st
     issue_date_soup = details_soup.find('div', class_='cover-image__date')
     issue_pub_date = issue_date_soup.find('span').text.strip()
     issue_details = {
-        'journal': journal_title,
-        'volume': volume,
-        'issue': issue,
+        'issue_number': issue,
         'issue_title': issue_title,
         'issue_page_range': page_range,
         'issue_pub_date': issue_pub_date,
-        'issue_pub_year': year
+        'issue_pub_year': year,
+        'volume': volume,
+        'journal': journal_title
     }
     return issue_details
 
@@ -251,13 +251,13 @@ def extract_sage_issue_metadata(issue_soup: BeautifulSoup):
                 raise ValueError(f'Unexpected issue pub date format: {issue_title}')
             issue_pub_year = int(issue_pub_date[-4:])
     issue_details = {
-        'journal': journal_title,
-        'volume': volume,
-        'issue': issue,
+        'issue_number': issue,
         'issue_title': issue_title,
         'issue_page_range': issue_page_range,
         'issue_pub_date': issue_pub_date,
-        'issue_pub_year': issue_pub_year
+        'issue_pub_year': issue_pub_year,
+        'volume': volume,
+        'journal': journal_title
     }
     return issue_details
 
