@@ -36,15 +36,23 @@ def read_countries_continents():
     country_continent_map = {
         # Most of these are not countries but regions mentioned in titles
         # others are former countries (Soviet Union) or non/partially-recognised countries (Kosovo)
-        'Soviet Union': 'Asia',
-        'Middle East': 'Asia',
-        'Latin America': 'South America',
-        'Caribbean': 'North America',
-        'West Indies': 'North America',
         'Western Sahara': 'Africa',
         'Korea': 'Asia',
+        'Middle East': 'Asia',
+        'Palestine': 'Asia',
+        'Soviet Union': 'Asia',
+        'England': 'Europe',
+        'Jersey': 'Europe',
         'Kosovo': 'Europe',
-        'Palestine': 'Asia'
+        'Northern Ireland': 'Europe',
+        'Scotland': 'Europe',
+        'Wales': 'Europe',
+        'Caribbean': 'North America',
+        'Saba': 'North America',
+        'Virgin Islands': 'North America',
+        'West Indies': 'North America',
+        'French Polynesia': 'Oceania',
+        'Latin America': 'South America',
     }
     countries = {'Soviet Union', 'Middle East', 'Latin America', 'Caribbean', 'West Indies'}
     continents = set()
