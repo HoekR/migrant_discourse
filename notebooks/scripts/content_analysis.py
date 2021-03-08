@@ -1,15 +1,18 @@
 from typing import List
 from collections import Counter
 import re
-from nltk.corpus import stopwords # import to remove stopwords
+
+import nltk
+from nltk.collocations import BigramCollocationFinder, BigramAssocMeasures
+from nltk.corpus import stopwords as stopword_sets
 from pandas import DataFrame
 import pandas as pd
 
 
 def get_stopwords() -> List[str]:
-    stopwords_en = stopwords.words('english')
-    stopwords_fr = stopwords.words('french')
-    stopwords_sp = stopwords.words('spanish')
+    stopwords_en = stopword_sets.words('english')
+    stopwords_fr = stopword_sets.words('french')
+    stopwords_sp = stopword_sets.words('spanish')
     stopwords_all = stopwords_en + stopwords_fr + stopwords_sp
     return stopwords_all
 
@@ -73,6 +76,23 @@ def demonstrate_normalisation(df, max_titles: int = 25) -> None:
         title = normalise_title(title)
         print('Normalised:', title)
         print()
+
+
+def make_title_unigram_term_list(title: str,
+                                 stopword_list: List[str] = None,
+                                 normalise: bool = False):
+    """Transform a title string into a list of single word terms."""
+    if not title:
+        # is title is None or empty, return empty term list
+        return []
+    # normalise the title using the steps described above
+    if normalise:
+        title = normalise_title(title)
+    # .split(' ') splits the title into chunks wherever there is a whitespace
+    terms = title.split(' ')
+    # remove stopwords
+    terms = [term for term in terms if term not in stopword_list]
+    return terms
 
 
 def get_unigram_freq(titles: List[str], normalise: bool = True, remove_stop: bool = False) -> Counter:
@@ -189,6 +209,7 @@ def highlight_odds(row, column_name, boundary=2):
 
 def extract_ngram_freq(titles):
     # count frequencies of individual words
+    stopwords_all = get_stopwords()
     uni_freq = Counter()
 
     for title in titles:
@@ -203,4 +224,29 @@ def extract_ngram_freq(titles):
 
     for term, freq in uni_freq.most_common(25):
         print(f'{term: <30}{freq: >5}')
+
+
+def extract_bigrams(titles, stopwords):
+    bigram_measures = BigramAssocMeasures()
+    # split all titles into a single list of one-word terms
+    words = [word for title in titles for word in title.split(' ')]
+    # create a bigram collocation finder based on the list of words
+    finder = BigramCollocationFinder.from_words(words)
+    # Remove bigrams that occur fewer than five times
+    finder.apply_freq_filter(5)
+    # select all bigrams that do no include stopwords
+    bigrams = []
+    for bigram in finder.nbest(bigram_measures.pmi, 1000):
+        if bigram[0] in stopwords or bigram[1] in stopwords:
+            continue
+        bigrams.append(bigram)
+    return bigrams
+
+
+def mark_bigrams(title, bigrams):
+    for bigram in bigrams:
+        if ' '.join(bigram) in title:
+            title = title.replace(' '.join(bigram), '_'.join(bigram))
+    return title
+
 

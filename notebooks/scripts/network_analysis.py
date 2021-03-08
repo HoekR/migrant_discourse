@@ -138,9 +138,11 @@ def make_bibliographic_record(volume, authors):
     elif authors[0]['entity_role'] == 'preface_author':
         record['issue_section'] = 'front_matter'
         record['article_title'] = 'Preface'
-    if authors[0]['entity_role'] == 'preface_author':
+    elif authors[0]['entity_role'] == 'intro_author':
         record['issue_section'] = 'front_matter'
         record['article_title'] = 'Introduction'
+    else:
+        raise ValueError('unknown entity role!')
     record['article_author'] = ' && '.join([author['entity_name'] for author in authors])
     record['article_author_index_name'] = ' && '.join([author['entity_name'] for author in authors])
     record['article_author_affiliation'] = ' && '.join(['' for _author in authors])

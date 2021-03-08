@@ -94,6 +94,10 @@ class CountryLookup:
                                    include_nationalities: bool = False) -> Tuple[Counter, Counter]:
         country_count = Counter()
         continent_count = Counter()
+        for country in self.countries:
+            country_count[country] = 0
+        for continent in self.continents:
+            continent_count[continent] = 0
 
         for title in titles:
             title = map_country_acronym(title.title())
