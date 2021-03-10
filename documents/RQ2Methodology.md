@@ -28,4 +28,4 @@ _International Migration_ is the successor to and a merger of journals _REMP Bul
 
 We chose to use a list of titles, rather than the full-text of this set of publications, not only because there is no such set available and analyzing it brings many new problems, but also because in our view titles can be viewed as a short summary of the content. After all, authors use their title to catch the interest or curiosity of their prospective readers by catching the essence of their text and also by using scientific terms that are in fashion.
 
-The analysis is documented in [analysis notebook](../notebooks/IM-title-analysis-marijn.ipynb)
+The analysis is documented in [analysis notebook](../notebooks/publication-title-analysis.ipynb)
