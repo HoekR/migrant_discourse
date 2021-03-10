@@ -1,5 +1,6 @@
-# migrant_discourse
-code for the digital history contribution about discourse coalitions
+# Discourse Coalitions on Migration Management
+
+Code for the digital history contribution about discourse coalitions.
 
 Authors: Marijke van Faassen, Rik Hoekstra, Marijn Koolen (KNAW - Huygens ING)
 
@@ -98,7 +99,7 @@ This layered publication contains three Jupyter notebooks
     - Normalization: stopwords, case, lemmatization
     - Classification: countries, emigration vs immigration …
     - Visualisation: frequency lists, word clouds
-3. Network analysis:
+3. [Network analysis](./notebooks/NetworksResearchQuestions.ipynb):
     - Selection: REMP + Studies
     - Modelling: academics, public administrators, publication roles
     - Linking: publication roles
