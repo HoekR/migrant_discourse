@@ -3,9 +3,9 @@
 Code for our article on discourse coalitions on Migration Management, submitted to the [Journal of Digital History](https://journalofdigitalhistory.org/en/).
 
 Authors:
-- [Marijke van Faassen](https://www.huygens.knaw.nl/medewerkers/marijke-van-faassen/) ,
-- [Rik Hoekstra](https://www.huygens.knaw.nl/medewerkers/rik-hoekstra/) ([ORCiD](https://orcid.org/0000-0002-6951-8014)),
-- [Marijn Koolen](https://marijnkoolen.com/) (KNAW - Huygens ING) ([ORCiD](https://orcid.org/0000-0002-0301-2029))
+- [Marijke van Faassen](https://www.huygens.knaw.nl/medewerkers/marijke-van-faassen/) ([KNAW](https://knaw.nl/nl) - [Huygens ING](https://en.huygens.knaw.nl/?noredirect=en_GB)) ,
+- [Rik Hoekstra](https://www.huygens.knaw.nl/medewerkers/rik-hoekstra/) ([KNAW](https://knaw.nl/nl) - [Huygens ING](https://en.huygens.knaw.nl/?noredirect=en_GB)) ([ORCiD](https://orcid.org/0000-0002-6951-8014)),
+- [Marijn Koolen](https://marijnkoolen.com/) ([KNAW](https://knaw.nl/nl) - [Huygens ING](https://en.huygens.knaw.nl/?noredirect=en_GB)) ([ORCiD](https://orcid.org/0000-0002-0301-2029))
 
 ### Topic
 
