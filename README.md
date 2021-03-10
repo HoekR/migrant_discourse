@@ -6,18 +6,8 @@ Authors: Marijke van Faassen, Rik Hoekstra, Marijn Koolen (KNAW - Huygens ING)
 ### Topic
 
 **International migration management and technocracy**
-The scholarly debate on international migration has been characterized  
-over the past 30 years by a focus on globalization and a paradigm shift  
-to the study of migration management. The key actors in migration  
-management are the nation states and also the international meetings and  
-organisations consisting of trained experts. They have become more and  
-more the subject of current discourses around the legitimacy of  
-technocratic governance. In this article we will historicize the concept  
-of migration management and investigate the connections between  
-technocratic experts and one of today’s biggest players in the  
-international field, albeit a fairly contested one: the International  
-Organisation for Migration (IOM) by operationalizing the concept of  
-discourses coalitions.
+
+The scholarly debate on international migration has been characterized over the past 30 years by a focus on globalization and a paradigm shift to the study of migration management. The key actors in migration management are the nation states and also the international meetings and organisations consisting of trained experts. They have become more and more the subject of current discourses around the legitimacy of technocratic governance. In this article we will historicize the concept of migration management and investigate the connections between technocratic experts and one of today’s biggest players in the international field, albeit a fairly contested one: the International Organisation for Migration (IOM) by operationalizing the concept of discourses coalitions.
 
 ##  Publication Layers
 
@@ -70,9 +60,7 @@ We use network analysis to interpret the discourse structure. How do we analyse 
 
 From the Modeling Society paper:
 
-<pre>
-    In this paper I will start to unravel some of these discourse coalitions, particularly those concerned with international migration. I will do this by providing a genealogy (following  Raphaels configuration or periodization) of both the Dutch national migration system and  one of today’s biggest players in the international field, albeit a fairly contested one: the  International Organisation for Migration (IOM). Both put down their roots before the Second  World War but were legally founded in 1951-1952. In a general overview I will briefly outline their aims, how they related to each other, and how ‘sensitive’ their key actors were with  regard to issues such as democracy and the legitimacy of their policy. Then I will zoom in on  a group of international scholars that joined forces in the Netherlands in 1951 as the  Research Group for European Migration Problems (REMP). I will argue that this group was  the informal discourse coalition which formed the nexus between science and politics in  what nowadays is called ‘migration management’. I will address two key questions: “Who  were the key scientists involved?” and “How were they connected to the key political actors  and institutions mentioned above?”.  Finally, I will briefly reflect on what Raphael has called  ‘secondary scientization’. This is the phrase used from the 1970s and 1980s onwards, during  a period when a general critical awareness and response towards social scientific knowledge  was growing. These were also the years of Foucault’s lectures on ‘Security, Territory,  Population’, which inspired several ‘Governmentality’ researchers to critically reflect upon  IOM’s current promotion of ‘border management’?.7  Do these years mark the shift to a new  discourse and perhaps to a new coalition around this specification of migration management  which could explain the disputes around IOM today’?
-</pre>
+> In this paper I will start to unravel some of these discourse coalitions, particularly those concerned with international migration. I will do this by providing a genealogy (following  Raphaels configuration or periodization) of both the Dutch national migration system and  one of today’s biggest players in the international field, albeit a fairly contested one: the  International Organisation for Migration (IOM). Both put down their roots before the Second  World War but were legally founded in 1951-1952. In a general overview I will briefly outline their aims, how they related to each other, and how ‘sensitive’ their key actors were with  regard to issues such as democracy and the legitimacy of their policy. Then I will zoom in on  a group of international scholars that joined forces in the Netherlands in 1951 as the  Research Group for European Migration Problems (REMP). I will argue that this group was  the informal discourse coalition which formed the nexus between science and politics in  what nowadays is called ‘migration management’. I will address two key questions: “Who  were the key scientists involved?” and “How were they connected to the key political actors  and institutions mentioned above?”.  Finally, I will briefly reflect on what Raphael has called  ‘secondary scientization’. This is the phrase used from the 1970s and 1980s onwards, during  a period when a general critical awareness and response towards social scientific knowledge  was growing. These were also the years of Foucault’s lectures on ‘Security, Territory,  Population’, which inspired several ‘Governmentality’ researchers to critically reflect upon  IOM’s current promotion of ‘border management’?.7  Do these years mark the shift to a new  discourse and perhaps to a new coalition around this specification of migration management  which could explain the disputes around IOM today’?
 
 ### Selection
 
@@ -150,7 +138,7 @@ These are based on the following WorldCat identities:
 - ICEM: https://worldcat.org/identities/lccn-n50055088/
 - IOM: https://worldcat.org/identities/lccn-no90018047/
 
-References
+## References
 
 Faassen, M. van, & Hoekstra, F. G. (2017). Modelling Society through Migration Management: Exploring the role of (Dutch) experts in 20th century international migration policy. . Paper presented at Government by Expertise, Amsterdam, Netherlands.
 
