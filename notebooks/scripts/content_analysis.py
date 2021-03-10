@@ -2,7 +2,6 @@ from typing import List
 from collections import Counter
 import re
 
-import nltk
 from nltk.collocations import BigramCollocationFinder, BigramAssocMeasures
 from nltk.corpus import stopwords as stopword_sets
 from pandas import DataFrame
