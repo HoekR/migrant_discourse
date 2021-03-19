@@ -50,7 +50,7 @@ def parse_spreadsheet_records(spreadsheet_string: str) -> List[Dict[str, any]]:
     rows = [row_string.split('\t') for row_string in spreadsheet_string.split('\r\n')]
     headers = rows[0]
     data_rows = [row for row in rows[1:] if row_has_content(row)]
-    records = [{header: row[hi] for hi, header in enumerate(headers)} for row in data_rows]
+    records = [{header: row[hi].strip() for hi, header in enumerate(headers)} for row in data_rows]
     for record in records:
         for field in record:
             if field == 'year':
@@ -61,7 +61,6 @@ def parse_spreadsheet_records(spreadsheet_string: str) -> List[Dict[str, any]]:
 def get_spreadsheet_urls() -> Tuple[str, str]:
     spreadsheet_key = '1u691b_EcRfwZ-ipQobFvZZeBJlA0fATErfuymQx_rM8'
     rel_gid = '1337791397'
-    ent_gid = '1301599057'
     ent_gid = '1771542502'
     base_url = 'https://docs.google.com/spreadsheets/d/'
     spreadsheet_url_relationships = f'{base_url}{spreadsheet_key}/export?gid={rel_gid}&format=tsv'
@@ -130,7 +129,7 @@ def make_bibliographic_record(volume, authors):
         'issue_pub_year': volume['year'],
         'volume': volume['volume'],
         'journal': volume['series'],
-        'publisher': 'REMP'
+        'publisher': 'Staatsdrukkerij'
     }
     if authors[0]['entity_role'] == 'article_author':
         record['issue_section'] = 'article'

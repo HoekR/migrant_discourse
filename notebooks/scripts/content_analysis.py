@@ -6,6 +6,32 @@ from nltk.collocations import BigramCollocationFinder, BigramAssocMeasures
 from nltk.corpus import stopwords as stopword_sets
 from pandas import DataFrame
 import pandas as pd
+from nltk import pos_tag, word_tokenize
+from nltk.stem import WordNetLemmatizer
+
+lemmatizer = WordNetLemmatizer()
+
+
+def map_pos(pos):
+    """Map NLTK Part-Of-Speech tag labels to WordNet Part-Of-Speech tag labels."""
+    if pos.startswith('NN'):
+        return 'n'
+    if pos.startswith('VB'):
+        return 'v'
+    if pos.startswith('A'):
+        return 'a'
+
+
+def lemmatize_words(words):
+    """Return the lemmas of a list of words."""
+    return [lemmatizer.lemmatize(word, pos=map_pos(pos)) if map_pos(pos) else word for word, pos in pos_tag(words)]
+
+
+def lemmatize_title(title):
+    """Return a lemmatized version of the title."""
+    words = word_tokenize(title)
+    lemmas = lemmatize_words(words)
+    return ' '.join(lemmas)
 
 
 def get_stopwords() -> List[str]:
@@ -65,6 +91,12 @@ def normalise_title(title: str) -> str:
     # For IMR articles, 'Book Review' is a 'stop phrase'
     title = title.replace('Book Review', '')
     title = collapse_multiple_whitespace(title)
+    # Lower casing is needed because article titles use uppercase initials for most content words
+    title = lemmatize_title(title.lower())
+    # lower case 'united states' is lemmatized to 'united state', so fix that
+    # this issue no doubt plays up for other names, but 'united states' is so frequent
+    # that it warrants its own fix.
+    title = re.sub(r'\bunited state\b', 'united states', title)
     return title.lower()
 
 
