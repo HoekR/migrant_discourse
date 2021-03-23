@@ -138,7 +138,8 @@ def make_bibliographic_record(volume, authors):
         record['issue_section'] = 'front_matter'
         record['article_title'] = 'Preface'
     elif authors[0]['entity_role'] == 'intro_author':
-        record['issue_section'] = 'front_matter'
+        # Introductions elaborate the scope of the research and have academic status, so count as academic publication
+        record['issue_section'] = 'article'
         record['article_title'] = 'Introduction'
     else:
         raise ValueError('unknown entity role!')

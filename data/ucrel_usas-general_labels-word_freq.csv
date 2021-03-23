@@ -1,0 +1,631 @@
+,label,word,count
+0,general and abstract terms,labor,320
+1,general and abstract terms,development,287
+2,general and abstract terms,assimilation,259
+3,general and abstract terms,life,192
+4,general and abstract terms,experience,160
+5,general and abstract terms,case,146
+6,general and abstract terms,labour,140
+7,general and abstract terms,developing,124
+8,general and abstract terms,integration,108
+9,general and abstract terms,impact,104
+10,general and abstract terms,return,95
+11,general and abstract terms,trends,82
+12,general and abstract terms,developments,81
+13,general and abstract terms,aspects,72
+14,general and abstract terms,world,71
+15,general and abstract terms,effects,68
+16,general and abstract terms,status,68
+17,general and abstract terms,growth,66
+18,general and abstract terms,making,65
+19,general and abstract terms,family,58
+20,general and abstract terms,adaptation,50
+21,general and abstract terms,work,49
+22,general and abstract terms,problems,47
+23,general and abstract terms,adjustment,47
+24,general and abstract terms,identity,42
+25,general and abstract terms,comparative,41
+26,general and abstract terms,internal,40
+27,general and abstract terms,relations,40
+28,general and abstract terms,change,39
+29,general and abstract terms,lives,39
+30,the body and the individual,labor,135
+31,the body and the individual,case,118
+32,the body and the individual,history,98
+33,the body and the individual,patterns,60
+34,the body and the individual,labour,58
+35,the body and the individual,problems,48
+36,the body and the individual,health,47
+37,the body and the individual,change,39
+38,the body and the individual,fertility,32
+39,the body and the individual,group,30
+40,the body and the individual,groups,30
+41,the body and the individual,mental,28
+42,the body and the individual,problem,25
+43,the body and the individual,growth,22
+44,the body and the individual,structure,22
+45,the body and the individual,drain,22
+46,the body and the individual,brain,21
+47,the body and the individual,region,20
+48,the body and the individual,asylum,20
+49,the body and the individual,changes,19
+50,the body and the individual,conditions,16
+51,the body and the individual,system,16
+52,the body and the individual,border,16
+53,the body and the individual,household,14
+54,the body and the individual,going,12
+55,the body and the individual,model,10
+56,the body and the individual,setting,10
+57,the body and the individual,period,10
+58,the body and the individual,profile,9
+59,the body and the individual,systems,8
+60,arts and crafts,study,129
+61,arts and crafts,cultural,52
+62,arts and crafts,life,48
+63,arts and crafts,perspective,42
+64,arts and crafts,studies,36
+65,arts and crafts,culture,32
+66,arts and crafts,perspectives,31
+67,arts and crafts,work,25
+68,arts and crafts,developing,22
+69,arts and crafts,cultures,11
+70,arts and crafts,composition,10
+71,arts and crafts,model,10
+72,arts and crafts,lives,9
+73,arts and crafts,peasants,9
+74,arts and crafts,colonial,8
+75,arts and crafts,models,7
+76,arts and crafts,oil,4
+77,arts and crafts,portrait,4
+78,arts and crafts,transfer,3
+79,arts and crafts,representation,3
+80,arts and crafts,photo,2
+81,arts and crafts,illustration,2
+82,arts and crafts,transfers,2
+83,arts and crafts,water,2
+84,arts and crafts,relief,2
+85,arts and crafts,print,2
+86,arts and crafts,take,2
+87,arts and crafts,sections,2
+88,arts and crafts,figures,1
+89,arts and crafts,taken,1
+90,emotion,conflict,28
+91,emotion,approach,20
+92,emotion,attitudes,19
+93,emotion,force,17
+94,emotion,black,16
+95,emotion,critical,15
+96,emotion,challenge,10
+97,emotion,press,9
+98,emotion,struggle,9
+99,emotion,poor,8
+100,emotion,do,7
+101,emotion,high,7
+102,emotion,environment,6
+103,emotion,prejudice,6
+104,emotion,pressure,5
+105,emotion,peace,5
+106,emotion,approaches,5
+107,emotion,concerns,5
+108,emotion,conflicts,5
+109,emotion,domestic,5
+110,emotion,stress,5
+111,emotion,faith,4
+112,emotion,disruption,4
+113,emotion,does,4
+114,emotion,crossing,4
+115,emotion,care,4
+116,emotion,challenges,4
+117,emotion,xenophobia,4
+118,emotion,troubled,4
+119,emotion,spirit,4
+120,food and farming,rural,41
+121,food and farming,italians,37
+122,food and farming,country,27
+123,food and farming,farm,22
+124,food and farming,e,17
+125,food and farming,agricultural,12
+126,food and farming,whites,10
+127,food and farming,farmers,9
+128,food and farming,peasants,9
+129,food and farming,turkey,8
+130,food and farming,agriculture,8
+131,food and farming,service,7
+132,food and farming,high,7
+133,food and farming,jersey,7
+134,food and farming,swedes,6
+135,food and farming,field,6
+136,food and farming,pot,6
+137,food and farming,growing,6
+138,food and farming,peasant,5
+139,food and farming,indian,5
+140,food and farming,workers,5
+141,food and farming,crossing,4
+142,food and farming,side,4
+143,food and farming,coffee,4
+144,food and farming,harvest,4
+145,food and farming,take,4
+146,food and farming,measures,3
+147,food and farming,links,3
+148,food and farming,nutrition,3
+149,food and farming,wine,3
+150,government and public,states,266
+151,government and public,case,118
+152,government and public,rights,104
+153,government and public,return,77
+154,government and public,politics,71
+155,government and public,political,60
+156,government and public,war,58
+157,government and public,law,42
+158,government and public,internal,40
+159,government and public,illegal,29
+160,government and public,republic,28
+161,government and public,conflict,28
+162,government and public,services,28
+163,government and public,country,27
+164,government and public,citizenship,27
+165,government and public,exile,27
+166,government and public,legal,22
+167,government and public,state,22
+168,government and public,service,21
+169,government and public,asylum,20
+170,government and public,human,19
+171,government and public,capital,17
+172,government and public,naturalization,17
+173,government and public,black,17
+174,government and public,white,17
+175,government and public,force,16
+176,government and public,system,16
+177,government and public,border,16
+178,government and public,world,15
+179,government and public,convention,15
+180,"architecture, housing and the home",study,129
+181,"architecture, housing and the home",development,96
+182,"architecture, housing and the home",studies,36
+183,"architecture, housing and the home",home,30
+184,"architecture, housing and the home",market,29
+185,"architecture, housing and the home",developments,27
+186,"architecture, housing and the home",structure,22
+187,"architecture, housing and the home",developing,22
+188,"architecture, housing and the home",resettlement,21
+189,"architecture, housing and the home",drain,21
+190,"architecture, housing and the home",asylum,20
+191,"architecture, housing and the home",schools,18
+192,"architecture, housing and the home",school,17
+193,"architecture, housing and the home",border,16
+194,"architecture, housing and the home",door,14
+195,"architecture, housing and the home",mission,13
+196,"architecture, housing and the home",residential,12
+197,"architecture, housing and the home",residence,12
+198,"architecture, housing and the home",passage,10
+199,"architecture, housing and the home",markets,9
+200,"architecture, housing and the home",church,9
+201,"architecture, housing and the home",place,8
+202,"architecture, housing and the home",housing,8
+203,"architecture, housing and the home",flight,7
+204,"architecture, housing and the home",forms,7
+205,"architecture, housing and the home",living,7
+206,"architecture, housing and the home",building,7
+207,"architecture, housing and the home",exchange,6
+208,"architecture, housing and the home",neighborhood,6
+209,"architecture, housing and the home",walls,6
+210,money and commerce in industry,economic,240
+211,money and commerce in industry,labor,151
+212,money and commerce in industry,workers,129
+213,money and commerce in industry,market,100
+214,money and commerce in industry,trade,94
+215,money and commerce in industry,city,81
+216,money and commerce in industry,return,77
+217,money and commerce in industry,labour,72
+218,money and commerce in industry,experience,67
+219,money and commerce in industry,economy,62
+220,money and commerce in industry,mobility,48
+221,money and commerce in industry,books,48
+222,money and commerce in industry,employment,42
+223,money and commerce in industry,change,39
+224,money and commerce in industry,settlement,38
+225,money and commerce in industry,work,38
+226,money and commerce in industry,role,35
+227,money and commerce in industry,occupational,35
+228,money and commerce in industry,1900,27
+229,money and commerce in industry,part,25
+230,money and commerce in industry,markets,24
+231,money and commerce in industry,situation,23
+232,money and commerce in industry,industry,22
+233,money and commerce in industry,manpower,21
+234,money and commerce in industry,1880,21
+235,money and commerce in industry,1914,20
+236,money and commerce in industry,factors,19
+237,money and commerce in industry,changes,19
+238,money and commerce in industry,industrial,18
+239,money and commerce in industry,remittances,17
+240,"entertainment, sports and games",return,77
+241,"entertainment, sports and games",race,45
+242,"entertainment, sports and games",century,38
+243,"entertainment, sports and games",role,35
+244,"entertainment, sports and games",movement,33
+245,"entertainment, sports and games",country,27
+246,"entertainment, sports and games",part,25
+247,"entertainment, sports and games",work,25
+248,"entertainment, sports and games",books,24
+249,"entertainment, sports and games",movements,19
+250,"entertainment, sports and games",composition,10
+251,"entertainment, sports and games",note,10
+252,"entertainment, sports and games",act,9
+253,"entertainment, sports and games",training,8
+254,"entertainment, sports and games",book,7
+255,"entertainment, sports and games",forms,7
+256,"entertainment, sports and games",field,6
+257,"entertainment, sports and games",notes,6
+258,"entertainment, sports and games",production,6
+259,"entertainment, sports and games",guide,6
+260,"entertainment, sports and games",variations,5
+261,"entertainment, sports and games",setting,5
+262,"entertainment, sports and games",time,5
+263,"entertainment, sports and games",centuries,5
+264,"entertainment, sports and games",competition,5
+265,"entertainment, sports and games",variation,4
+266,"entertainment, sports and games",events,4
+267,"entertainment, sports and games",results,4
+268,"entertainment, sports and games",center,4
+269,"entertainment, sports and games",director,4
+270,life and living things,life,50
+271,life and living things,culture,31
+272,life and living things,growth,22
+273,life and living things,naturalization,17
+274,life and living things,border,16
+275,life and living things,schools,15
+276,life and living things,school,14
+277,life and living things,lives,12
+278,life and living things,cultures,11
+279,life and living things,kingdom,11
+280,life and living things,colony,10
+281,life and living things,turkey,8
+282,life and living things,living,7
+283,life and living things,roots,7
+284,life and living things,die,7
+285,life and living things,late,7
+286,life and living things,colonies,6
+287,life and living things,uprooted,6
+288,life and living things,borders,6
+289,life and living things,survival,5
+290,life and living things,domestic,5
+291,life and living things,mortality,4
+292,life and living things,birds,4
+293,life and living things,crossing,4
+294,life and living things,bay,4
+295,life and living things,buffalo,3
+296,life and living things,fall,3
+297,life and living things,death,3
+298,life and living things,schooling,3
+299,life and living things,cage,2
+300,"movement, location, travel and transport",migration,875
+301,"movement, location, travel and transport",immigration,737
+302,"movement, location, travel and transport",immigrants,638
+303,"movement, location, travel and transport",immigrant,346
+304,"movement, location, travel and transport",international,310
+305,"movement, location, travel and transport",emigration,247
+306,"movement, location, travel and transport",return,185
+307,"movement, location, travel and transport",city,162
+308,"movement, location, travel and transport",refugees,137
+309,"movement, location, travel and transport",migrants,136
+310,"movement, location, travel and transport",migrant,106
+311,"movement, location, travel and transport",refugee,91
+312,"movement, location, travel and transport",countries,73
+313,"movement, location, travel and transport",urban,58
+314,"movement, location, travel and transport",western,57
+315,"movement, location, travel and transport",foreign,56
+316,"movement, location, travel and transport",mobility,48
+317,"movement, location, travel and transport",south,44
+318,"movement, location, travel and transport",west,43
+319,"movement, location, travel and transport",east,42
+320,"movement, location, travel and transport",rights,42
+321,"movement, location, travel and transport",rural,41
+322,"movement, location, travel and transport",internal,40
+323,"movement, location, travel and transport",settlement,38
+324,"movement, location, travel and transport",aspects,36
+325,"movement, location, travel and transport",emigrants,36
+326,"movement, location, travel and transport",north,35
+327,"movement, location, travel and transport",movement,33
+328,"movement, location, travel and transport",migrations,33
+329,"movement, location, travel and transport",system,32
+330,numbers and measurement,1900,133
+331,numbers and measurement,1880,111
+332,numbers and measurement,population,101
+333,numbers and measurement,return,95
+334,numbers and measurement,1914,92
+335,numbers and measurement,1930,81
+336,numbers and measurement,1960,74
+337,numbers and measurement,1945,72
+338,numbers and measurement,world,71
+339,numbers and measurement,1940,68
+340,numbers and measurement,1950,64
+341,numbers and measurement,1980,63
+342,numbers and measurement,1970,62
+343,numbers and measurement,some,58
+344,numbers and measurement,1890,57
+345,numbers and measurement,1910,57
+346,numbers and measurement,1920,55
+347,numbers and measurement,integration,54
+348,numbers and measurement,1990,54
+349,numbers and measurement,1850,54
+350,numbers and measurement,1860,50
+351,numbers and measurement,minorities,48
+352,numbers and measurement,problems,47
+353,numbers and measurement,second,47
+354,numbers and measurement,third,42
+355,numbers and measurement,1939,42
+356,numbers and measurement,1975,41
+357,numbers and measurement,1971,40
+358,numbers and measurement,1,40
+359,numbers and measurement,1870,40
+360,"substances, materials, objects and equipment",states,266
+361,"substances, materials, objects and equipment",patterns,120
+362,"substances, materials, objects and equipment",case,118
+363,"substances, materials, objects and equipment",structure,44
+364,"substances, materials, objects and equipment",class,37
+365,"substances, materials, objects and equipment",china,32
+366,"substances, materials, objects and equipment",blacks,26
+367,"substances, materials, objects and equipment",part,25
+368,"substances, materials, objects and equipment",situation,23
+369,"substances, materials, objects and equipment",absorption,22
+370,"substances, materials, objects and equipment",state,21
+371,"substances, materials, objects and equipment",characteristics,18
+372,"substances, materials, objects and equipment",context,18
+373,"substances, materials, objects and equipment",black,18
+374,"substances, materials, objects and equipment",white,18
+375,"substances, materials, objects and equipment",system,17
+376,"substances, materials, objects and equipment",structural,16
+377,"substances, materials, objects and equipment",border,16
+378,"substances, materials, objects and equipment",global,14
+379,"substances, materials, objects and equipment",forms,14
+380,"substances, materials, objects and equipment",high,14
+381,"substances, materials, objects and equipment",pot,12
+382,"substances, materials, objects and equipment",articles,11
+383,"substances, materials, objects and equipment",model,10
+384,"substances, materials, objects and equipment",setting,10
+385,"substances, materials, objects and equipment",golden,10
+386,"substances, materials, objects and equipment",gold,10
+387,"substances, materials, objects and equipment",whites,10
+388,"substances, materials, objects and equipment",control,9
+389,"substances, materials, objects and equipment",formation,8
+390,education,study,132
+391,education,history,98
+392,education,class,47
+393,education,education,46
+394,education,studies,37
+395,education,schools,18
+396,education,school,17
+397,education,part,14
+398,education,training,13
+399,education,project,13
+400,education,program,12
+401,education,educational,11
+402,education,articles,11
+403,education,composition,10
+404,education,period,10
+405,education,students,9
+406,education,place,8
+407,education,essays,8
+408,education,act,7
+409,education,forms,7
+410,education,background,7
+411,education,programs,7
+412,education,assessment,6
+413,education,seminar,6
+414,education,et,6
+415,education,educating,6
+416,education,schooling,6
+417,education,essay,5
+418,education,examination,5
+419,education,programme,5
+420,language and communication,policy,136
+421,language and communication,study,129
+422,language and communication,case,118
+423,language and communication,books,108
+424,language and communication,newsletter,100
+425,language and communication,history,98
+426,language and communication,italian,79
+427,language and communication,return,77
+428,language and communication,patterns,60
+429,language and communication,chinese,55
+430,language and communication,review,53
+431,language and communication,life,48
+432,language and communication,language,44
+433,language and communication,identity,42
+434,language and communication,comparative,41
+435,language and communication,policies,40
+436,language and communication,undocumented,39
+437,language and communication,settlement,38
+438,language and communication,irish,37
+439,language and communication,studies,36
+440,language and communication,introduction,36
+441,language and communication,bibliography,36
+442,language and communication,reference,32
+443,language and communication,japanese,32
+444,language and communication,german,31
+445,language and communication,latin,30
+446,language and communication,story,29
+447,language and communication,korean,29
+448,language and communication,dutch,26
+449,language and communication,data,26
+450,"social actions, states and processes",immigrants,319
+451,"social actions, states and processes",united,273
+452,"social actions, states and processes",american,229
+453,"social actions, states and processes",ethnic,217
+454,"social actions, states and processes",immigrant,172
+455,"social actions, states and processes",social,156
+456,"social actions, states and processes",refugees,137
+457,"social actions, states and processes",migrants,136
+458,"social actions, states and processes",labor,135
+459,"social actions, states and processes",workers,134
+460,"social actions, states and processes",relations,127
+461,"social actions, states and processes",migrant,106
+462,"social actions, states and processes",cultural,104
+463,"social actions, states and processes",americans,102
+464,"social actions, states and processes",population,101
+465,"social actions, states and processes",community,95
+466,"social actions, states and processes",race,93
+467,"social actions, states and processes",women,92
+468,"social actions, states and processes",children,92
+469,"social actions, states and processes",refugee,91
+470,"social actions, states and processes",mexican,89
+471,"social actions, states and processes",return,77
+472,"social actions, states and processes",ethnicity,77
+473,"social actions, states and processes",society,72
+474,"social actions, states and processes",world,71
+475,"social actions, states and processes",family,63
+476,"social actions, states and processes",culture,62
+477,"social actions, states and processes",human,60
+478,"social actions, states and processes",labour,60
+479,"social actions, states and processes",jews,56
+480,Time,new,243
+481,Time,history,196
+482,Time,1900,162
+483,Time,1880,135
+484,Time,1914,111
+485,Time,1930,99
+486,Time,1945,94
+487,Time,1960,92
+488,Time,1980,85
+489,Time,1940,85
+490,Time,1970,79
+491,Time,1950,78
+492,Time,1990,71
+493,Time,1920,69
+494,Time,1890,69
+495,Time,1910,69
+496,Time,1850,66
+497,Time,century,65
+498,Time,1,60
+499,Time,1860,60
+500,Time,western,57
+501,Time,historical,52
+502,Time,1971,51
+503,Time,1975,51
+504,Time,1939,51
+505,Time,two,50
+506,Time,recent,49
+507,Time,life,48
+508,Time,1870,48
+509,Time,1924,48
+510,world and environment,world,71
+511,world and environment,aliens,27
+512,world and environment,country,27
+513,world and environment,land,25
+514,world and environment,sun,18
+515,world and environment,global,14
+516,world and environment,environment,13
+517,world and environment,gulf,11
+518,world and environment,mainland,10
+519,world and environment,resources,9
+520,world and environment,geographical,9
+521,world and environment,valley,9
+522,world and environment,island,8
+523,world and environment,source,8
+524,world and environment,geography,8
+525,world and environment,nature,7
+526,world and environment,environmental,6
+527,world and environment,field,6
+528,world and environment,ecology,6
+529,world and environment,islands,5
+530,world and environment,setting,5
+531,world and environment,river,5
+532,world and environment,ecological,4
+533,world and environment,hemisphere,4
+534,world and environment,lands,4
+535,world and environment,geographic,4
+536,world and environment,bay,4
+537,world and environment,natural,4
+538,world and environment,mountain,4
+539,world and environment,light,3
+540,"psychological actions, states and processes",experience,212
+541,"psychological actions, states and processes",policy,136
+542,"psychological actions, states and processes",study,130
+543,"psychological actions, states and processes",case,118
+544,"psychological actions, states and processes",brain,84
+545,"psychological actions, states and processes",analysis,67
+546,"psychological actions, states and processes",research,60
+547,"psychological actions, states and processes",patterns,60
+548,"psychological actions, states and processes",review,53
+549,"psychological actions, states and processes",data,52
+550,"psychological actions, states and processes",life,48
+551,"psychological actions, states and processes",problems,47
+552,"psychological actions, states and processes",health,43
+553,"psychological actions, states and processes",education,43
+554,"psychological actions, states and processes",mental,42
+555,"psychological actions, states and processes",perspective,42
+556,"psychological actions, states and processes",policies,40
+557,"psychological actions, states and processes",undocumented,39
+558,"psychological actions, states and processes",studies,36
+559,"psychological actions, states and processes",theory,36
+560,"psychological actions, states and processes",experiences,33
+561,"psychological actions, states and processes",view,33
+562,"psychological actions, states and processes",perspectives,31
+563,"psychological actions, states and processes",making,29
+564,"psychological actions, states and processes",dynamics,28
+565,"psychological actions, states and processes",prospects,26
+566,"psychological actions, states and processes",reflections,26
+567,"psychological actions, states and processes",reviews,26
+568,"psychological actions, states and processes",problem,25
+569,"psychological actions, states and processes",process,25
+570,science and technology,return,77
+571,science and technology,analysis,65
+572,science and technology,law,42
+573,science and technology,language,40
+574,science and technology,dynamics,28
+575,science and technology,system,16
+576,science and technology,program,12
+577,science and technology,networks,12
+578,science and technology,systems,8
+579,science and technology,programs,7
+580,science and technology,environment,6
+581,science and technology,process,6
+582,science and technology,scientists,5
+583,science and technology,science,5
+584,science and technology,programme,5
+585,science and technology,technology,4
+586,science and technology,scientific,4
+587,science and technology,editor,4
+588,science and technology,annotated,4
+589,science and technology,languages,4
+590,science and technology,transfer,3
+591,science and technology,engineers,3
+592,science and technology,network,3
+593,science and technology,account,3
+594,science and technology,host,3
+595,science and technology,engineering,3
+596,science and technology,directory,3
+597,science and technology,dell,3
+598,science and technology,memory,2
+599,science and technology,application,2
+600,names and grammar,the,2810
+601,names and grammar,of,1981
+602,names and grammar,and,1931
+603,names and grammar,in,1804
+604,names and grammar,a,680
+605,names and grammar,to,504
+606,names and grammar,on,382
+607,names and grammar,united,268
+608,names and grammar,states,255
+609,names and grammar,american,237
+610,names and grammar,from,233
+611,names and grammar,america,232
+612,names and grammar,an,179
+613,names and grammar,york,164
+614,names and grammar,for,159
+615,names and grammar,italian,159
+616,names and grammar,australia,113
+617,names and grammar,canada,111
+618,names and grammar,chinese,111
+619,names and grammar,irish,111
+620,names and grammar,americans,102
+621,names and grammar,european,96
+622,names and grammar,europe,93
+623,names and grammar,among,89
+624,names and grammar,mexican,89
+625,names and grammar,latin,88
+626,names and grammar,mexico,80
+627,names and grammar,turkish,69
+628,names and grammar,de,68
+629,names and grammar,japanese,68
