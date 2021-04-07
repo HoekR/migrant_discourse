@@ -93,7 +93,7 @@ This layered publication contains three Jupyter notebooks
         - Authors (authorless articles)
         - Article type (editorial articles, review articles, research articles)
 
-2. [Publication title analysis](./notebooks/publication-title-analysis.ipynb):
+2. [Publication title analysis](./notebooks/Publication-title-analysis.ipynb) (or [view via NB Viewer](https://nbviewer.jupyter.org/github/HoekR/migrant_discourse/blob/main/notebooks/Publication-title-analysis.ipynb)):
     - Selection
         - REMP and IM titles
         - IMR book reviews
