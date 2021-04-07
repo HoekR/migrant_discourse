@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List
 from collections import Counter, defaultdict
 import re
 
@@ -297,6 +297,15 @@ def get_usas_general_labels():
     return general_labels
 
 
+def parse_usas_code(code: str, usas_label_map: Dict[str, str]) -> List[str]:
+    labels: List[str] = []
+    while len(code) > 0:
+        if code in usas_label_map and usas_label_map[code] not in labels:
+            labels.append(usas_label_map[code])
+        code = code[:-1]
+    return labels
+
+
 def parse_usas_specific_code(code, usas_label_map):
     while len(code) > 1:
         if code in usas_label_map:
@@ -312,16 +321,24 @@ def parse_usas_general_code(code, usas_label_map):
             return usas_label_map[code[:i]]
 
 
-def parse_usas_codes(codes, usas_label_map, level='specific'):
-    parse_usas_code = parse_usas_specific_code if level == 'specific' else parse_usas_general_code
+def parse_usas_codes(codes: List[str], usas_label_map: Dict[str, str]) -> List[Dict[str, any]]:
     labels = []
+    parsed_codes = []
     for code in codes:
         if '/' in code:
             for code_alt in code.split('/'):
-                labels += [parse_usas_code(code_alt, usas_label_map)]
+                parsed_code = {
+                    'code': code_alt,
+                    'labels': parse_usas_code(code_alt, usas_label_map)
+                }
+                parsed_codes.append(parsed_code)
         else:
-            labels += [parse_usas_code(code, usas_label_map)]
-    return labels
+            parsed_code = {
+                'code': code,
+                'labels': parse_usas_code(code, usas_label_map)
+            }
+            parsed_codes.append(parsed_code)
+    return parsed_codes
 
 
 def parse_usas_line(line, usas_label_map):
@@ -335,8 +352,7 @@ def parse_usas_line(line, usas_label_map):
         'pos': pos,
         'word': word,
         'code': usas_code,
-        'labels_specific': parse_usas_codes(codes, usas_label_map, level='specific'),
-        'labels_general': parse_usas_codes(codes, usas_label_map, level='general')
+        'usas_labels': parse_usas_codes(codes, usas_label_map)
     }
 
 
