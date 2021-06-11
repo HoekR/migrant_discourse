@@ -11,9 +11,7 @@ COLOR_MAP = {
     'organisation': 'black',
     'academic': 'blue',
     'technocrat': 'red',
-    'diplomat': 'maroon',
-    'unknown': 'yellow',
-    '':'yellow'
+    'unknown': 'yellow'
 }
 
 
@@ -22,8 +20,7 @@ def generate_graph():
 
 
 def add_entities(graph: Graph, entities: List[Dict[str, any]]):
-    nodes = [(entity['entity_name'], {'name':entity['entity_name'],
-                                      'entity_type':entity['entity_type']}) for entity in entities]
+    nodes = [(entity['entity_name'], {'color': COLOR_MAP[entity['entity_type']]}) for entity in entities]
     graph.add_nodes_from(nodes)
 
 
@@ -53,7 +50,7 @@ def parse_spreadsheet_records(spreadsheet_string: str) -> List[Dict[str, any]]:
     rows = [row_string.split('\t') for row_string in spreadsheet_string.split('\r\n')]
     headers = rows[0]
     data_rows = [row for row in rows[1:] if row_has_content(row)]
-    records = [{header: row[hi] for hi, header in enumerate(headers)} for row in data_rows]
+    records = [{header: row[hi].strip() for hi, header in enumerate(headers)} for row in data_rows]
     for record in records:
         for field in record:
             if field == 'year':
@@ -64,29 +61,21 @@ def parse_spreadsheet_records(spreadsheet_string: str) -> List[Dict[str, any]]:
 def get_spreadsheet_urls() -> Tuple[str, str]:
     spreadsheet_key = '1u691b_EcRfwZ-ipQobFvZZeBJlA0fATErfuymQx_rM8'
     rel_gid = '1337791397'
-    ent_gid = '1301599057'
-    cat_gid = '1771542502'
-    overl_gid = '2120744831'
+    ent_gid = '1771542502'
     base_url = 'https://docs.google.com/spreadsheets/d/'
     spreadsheet_url_relationships = f'{base_url}{spreadsheet_key}/export?gid={rel_gid}&format=tsv'
     spreadsheet_url_entities = f'{base_url}{spreadsheet_key}/export?gid={ent_gid}&format=tsv'
-    spreadsheet_url_categories = f'{base_url}{spreadsheet_key}/export?gid={cat_gid}&format=tsv'
-    spreadsheet_url_overlap = f'{base_url}{spreadsheet_key}/export?gid={overl_gid}&format=tsv'
-    return spreadsheet_url_entities, spreadsheet_url_relationships, spreadsheet_url_categories, spreadsheet_url_overlap
+    return spreadsheet_url_entities, spreadsheet_url_relationships
 
 
 def retrieve_spreadsheet_records(record_type: str = 'relationships'):
-    spreadsheet_url_entities, spreadsheet_url_relationships, spreadsheet_url_categories, spreadsheet_url_overlap = get_spreadsheet_urls()
+    spreadsheet_url_entities, spreadsheet_url_relationships = get_spreadsheet_urls()
     if record_type == 'entities':
         spreadsheet_string = download_spreadsheet_data(spreadsheet_url_entities)
     elif record_type == 'relationships':
         spreadsheet_string = download_spreadsheet_data(spreadsheet_url_relationships)
-    elif record_type == 'categories':
-        spreadsheet_string = download_spreadsheet_data(spreadsheet_url_categories)
-    elif record_type == 'overlap':
-        spreadsheet_string = download_spreadsheet_data(spreadsheet_url_overlap)
     else:
-        raise ValueError('Unknown record type, must be "entities", "categories", "overlap" or "relationships"')
+        raise ValueError('Unknown record type, must be "entities" or "relationships"')
     return parse_spreadsheet_records(spreadsheet_string)
 
 
@@ -140,7 +129,7 @@ def make_bibliographic_record(volume, authors):
         'issue_pub_year': volume['year'],
         'volume': volume['volume'],
         'journal': volume['series'],
-        'publisher': 'REMP'
+        'publisher': 'Staatsdrukkerij'
     }
     if authors[0]['entity_role'] == 'article_author':
         record['issue_section'] = 'article'
@@ -149,7 +138,8 @@ def make_bibliographic_record(volume, authors):
         record['issue_section'] = 'front_matter'
         record['article_title'] = 'Preface'
     elif authors[0]['entity_role'] == 'intro_author':
-        record['issue_section'] = 'front_matter'
+        # Introductions elaborate the scope of the research and have academic status, so count as academic publication
+        record['issue_section'] = 'article'
         record['article_title'] = 'Introduction'
     else:
         raise ValueError('unknown entity role!')
