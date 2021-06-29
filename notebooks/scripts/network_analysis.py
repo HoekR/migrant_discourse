@@ -61,7 +61,7 @@ def parse_spreadsheet_records(spreadsheet_string: str) -> List[Dict[str, any]]:
     return records
 
 
-def get_spreadsheet_urls() -> Tuple[str, str]:
+def get_spreadsheet_urls() -> Tuple[str, str, str, str]:
     spreadsheet_key = '1u691b_EcRfwZ-ipQobFvZZeBJlA0fATErfuymQx_rM8'
     rel_gid = '1337791397'
     ent_gid = '1301599057'
