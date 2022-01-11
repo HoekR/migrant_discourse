@@ -114,3 +114,61 @@ def highlight_decade(row):
     }
     color = color_cat[row['cat']]
     return [f'background-color: {color}' if is_decade(col) and row[col] else '' for col in row.keys()]
+
+def lowercase_headers(records:list):
+    return [dict((k.lower(), v) for k,v in record.items()) for record in records]
+
+
+def get_entity_category(entity: dict, entity_category: dict):
+    if entity.get('entity_name') in entity_category:
+        return entity_category[entity['entity_name']]
+    else:
+        return 'unknown'
+
+
+def get_entity_name(entity: dict, ):
+    name_labels = ['prs_surname', 'prs_infix', 'prs_initials']
+    if entity['prs_infix'] != '':
+        return f"{entity['prs_surname'].strip()}, {entity['prs_infix'].strip()}, {entity['prs_initials'].strip()}"
+    else:
+        return f"{entity['prs_surname'].strip()}, {entity['prs_initials'].strip()}"
+
+
+def get_entity_country(entity: dict):
+    if entity.get('entity_name') in entity_category:
+        return entity_category[entity['entity_name']]
+    else:
+        return 'unknown'
+
+
+def make_nodes(entity):
+    return [n.get('entity_name') for n in entity if n.get('entity_name')]
+
+
+def make_link_from_entity(entity, revnodelist, rempgraph):
+    counter = []
+    authors = [n.get('entity_name') for n in entity if n.get('entity_role')=='article_author']
+    links = []
+    for aut in authors:
+        autnr = revnodelist[aut]
+        counter.append(autnr)
+        for node in entity:
+            if node.get('entity_role') != 'article_author':
+                if node.get('entity_role'): # we don't include titles
+                    category = node.get('entity_role') or "unknown"
+                    target = revnodelist[node.get('entity_name')]
+                    graphnode = rempgraph.nodes()[target]
+                    if graphnode.get('category'):
+                        graphnode['category'].append(category)
+                    else:
+                        graphnode['category'] = [category]
+                    link = (autnr, target, {"link_type": node.get('entity_role') or 'unknown'})
+                    links.append(link)
+                    counter.append(target)
+
+    return links, counter
+
+
+def aut_to_fn(cols):
+    if cols[0].strip() != '':
+         return f'{cols[0]+","} {cols[1]} {cols[2] or ""}'.strip()

@@ -30,7 +30,7 @@ def add_entities(graph: Graph, entities: List[Dict[str, any]]):
 def add_record_links(graph: Graph, record_entities: List[Dict[str, any]]):
     node_labels = [entity['entity_name'] for entity in record_entities]
     for node1, node2 in combinations(node_labels, 2):
-        print('adding link', node1, node2)
+        # print('adding link', node1, node2)
         graph.add_edge(node1, node2)
 
 
@@ -61,7 +61,7 @@ def parse_spreadsheet_records(spreadsheet_string: str) -> List[Dict[str, any]]:
     return records
 
 
-def get_spreadsheet_urls() -> Tuple[str, str, str, str]:
+def get_spreadsheet_urls() -> Tuple[str, str]:
     spreadsheet_key = '1u691b_EcRfwZ-ipQobFvZZeBJlA0fATErfuymQx_rM8'
     rel_gid = '1337791397'
     ent_gid = '1301599057'
