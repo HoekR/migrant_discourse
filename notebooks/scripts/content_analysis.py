@@ -1,37 +1,11 @@
-from typing import Dict, List
-from collections import Counter, defaultdict
+from typing import List
+from collections import Counter
 import re
 
 from nltk.collocations import BigramCollocationFinder, BigramAssocMeasures
 from nltk.corpus import stopwords as stopword_sets
 from pandas import DataFrame
 import pandas as pd
-from nltk import pos_tag, word_tokenize
-from nltk.stem import WordNetLemmatizer
-
-lemmatizer = WordNetLemmatizer()
-
-
-def map_pos(pos):
-    """Map NLTK Part-Of-Speech tag labels to WordNet Part-Of-Speech tag labels."""
-    if pos.startswith('NN'):
-        return 'n'
-    if pos.startswith('VB'):
-        return 'v'
-    if pos.startswith('A'):
-        return 'a'
-
-
-def lemmatize_words(words):
-    """Return the lemmas of a list of words."""
-    return [lemmatizer.lemmatize(word, pos=map_pos(pos)) if map_pos(pos) else word for word, pos in pos_tag(words)]
-
-
-def lemmatize_title(title):
-    """Return a lemmatized version of the title."""
-    words = word_tokenize(title)
-    lemmas = lemmatize_words(words)
-    return ' '.join(lemmas)
 
 
 def get_stopwords() -> List[str]:
@@ -91,12 +65,6 @@ def normalise_title(title: str) -> str:
     # For IMR articles, 'Book Review' is a 'stop phrase'
     title = title.replace('Book Review', '')
     title = collapse_multiple_whitespace(title)
-    # Lower casing is needed because article titles use uppercase initials for most content words
-    title = lemmatize_title(title.lower())
-    # lower case 'united states' is lemmatized to 'united state', so fix that
-    # this issue no doubt plays up for other names, but 'united states' is so frequent
-    # that it warrants its own fix.
-    title = re.sub(r'\bunited state\b', 'united states', title)
     return title.lower()
 
 
@@ -281,125 +249,3 @@ def mark_bigrams(title, bigrams):
     return title
 
 
-def get_usas_label_map():
-    usas_hierarchy_file = '../data/semtags_subcategories.txt'
-    usas_label_map = {}
-    with open(usas_hierarchy_file, 'rt') as fh:
-        for line in fh:
-            code, label = line.strip().split('\t')
-            usas_label_map[code] = label
-    return usas_label_map
-
-
-def get_usas_general_labels():
-    usas_label_map = get_usas_label_map()
-    general_labels = [usas_label_map[code] for code in usas_label_map if len(code) == 1]
-    return general_labels
-
-
-def parse_usas_code(code: str, usas_label_map: Dict[str, str]) -> List[str]:
-    labels: List[str] = []
-    while len(code) > 0:
-        if code in usas_label_map and usas_label_map[code] not in labels:
-            labels.append(usas_label_map[code])
-        code = code[:-1]
-    return labels
-
-
-def parse_usas_specific_code(code, usas_label_map):
-    while len(code) > 1:
-        if code in usas_label_map:
-            return usas_label_map[code]
-        code = code[:-1]
-
-
-def parse_usas_general_code(code, usas_label_map):
-    # print('CODE:', code)
-    for i in range(1, len(code) + 1):
-        # print(f'CODE: {i}', code[:i])
-        if code[:i] in usas_label_map:
-            return usas_label_map[code[:i]]
-
-
-def parse_usas_codes(codes: List[str], usas_label_map: Dict[str, str]) -> List[Dict[str, any]]:
-    labels = []
-    parsed_codes = []
-    for code in codes:
-        if '/' in code:
-            for code_alt in code.split('/'):
-                parsed_code = {
-                    'code': code_alt,
-                    'labels': parse_usas_code(code_alt, usas_label_map)
-                }
-                parsed_codes.append(parsed_code)
-        else:
-            parsed_code = {
-                'code': code,
-                'labels': parse_usas_code(code, usas_label_map)
-            }
-            parsed_codes.append(parsed_code)
-    return parsed_codes
-
-
-def parse_usas_line(line, usas_label_map):
-    parts = re.split(' +', line.strip())
-    line_num, word_num, pos, word = parts[0:4]
-    assert (line_num.isdigit())
-    usas_code = ' '.join(parts[4:])
-    codes = parts[4:]
-    return {
-        'line': line_num,
-        'pos': pos,
-        'word': word,
-        'code': usas_code,
-        'usas_labels': parse_usas_codes(codes, usas_label_map)
-    }
-
-
-def get_usas_line_data():
-    usas_file = '../data/main-review-article-titles-ucrel.txt'
-    usas_label_map = get_usas_label_map()
-    line_data = defaultdict(list)
-    with open(usas_file, 'rt') as fh:
-        _top_line = next(fh)
-        for li, line in enumerate(fh):
-            data = parse_usas_line(line, usas_label_map)
-            line_data[data['line']].append(data)
-    return line_data
-
-
-def get_title_usas_label_counts():
-    general_labels = get_usas_general_labels()
-    line_data = get_usas_line_data()
-    titles = []
-    title_label_counts = []
-    for li, line in enumerate(line_data):
-        words = [word_data['word'] for word_data in line_data[line]]
-        title = ' '.join(words)
-        labels = [label for word_data in line_data[line] for label in set(word_data['labels_general'])]
-        label_count = Counter(labels)
-        label_count = [label_count[label] for label in general_labels]
-        titles.append(title)
-        title_label_counts.append(label_count)
-    return title_label_counts
-
-
-def generate_uses_top_word_frequencies(top_n: int = 30):
-    general_labels = get_usas_general_labels()
-    label_word_count = defaultdict(Counter)
-    line_data = get_usas_line_data()
-    # count how often each word is labelled with each general category
-    for line in line_data:
-        for word_data in line_data[line]:
-            for label in word_data['labels_general']:
-                label_word_count[label].update([word_data['word']])
-    data_list = []
-    # list the top N most frequent words per category
-    for label in general_labels:
-        # print(f'\n{label}\n--------------------')
-        for word, count in label_word_count[label].most_common(top_n):
-            data_list.append({'label': label, 'word': word, 'count': count})
-            # print(f'{label: <30}{word: <25}{count: >5}')
-    # write the top N lists to a CSV file
-    label_df = pd.DataFrame(data_list)
-    label_df.to_csv('../data/ucrel_usas-general_labels-word_freq.csv')

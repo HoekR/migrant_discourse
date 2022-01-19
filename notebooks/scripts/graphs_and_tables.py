@@ -3,45 +3,24 @@
 
 import sys
 
-from network_overlap import pub_df, vals
-from .network_visualisation import surnms, record_entities, entity_count, entity_role_count, entities, nodelist
-
 sys.path.append('/data/home/jupyter-jdh-artikel/.local/lib/python3.7/site-packages')
 
 import pandas as pd
-# import altair as alt
-
 from itertools import chain
 from collections import defaultdict, Counter
 # import networkx as nx
-
-from scripts.network_analysis import retrieve_spreadsheet_records
-from scripts.network_analysis import extract_record_entities
-
-from scripts.network_analysis import generate_graph, add_entities, add_record_links
+from scripts.datasets import entity_records, relationship_records, cat_p_df, entity_roles, nr, entity_category
+#from network_overlap import pub_df
+from scripts.datasets import periods
 from scripts.data_wrangling import *
 
-entity_records = retrieve_spreadsheet_records(record_type='entities')
-entity_records = lowercase_headers(entity_records)
-entity_roles = {get_entity_name(record): [record['prs_role1'], record['prs_role2'], record['prs_role3']] for record in entity_records}
+#from scripts.network_analysis import retrieve_spreadsheet_records
+#from scripts.network_analysis import extract_record_entities
 
-for k in entity_roles:
-    nr = [e for e in entity_roles[k] if e !='']
-    entity_roles[k]=nr
+#from scripts.network_analysis import generate_graph, add_entities, add_record_links
 
-entity_category = {get_entity_name(entity = record): record.get('prs_category') or 'unknown' for record in entity_records}
 
-relationship_records = retrieve_spreadsheet_records(record_type='relationships')
 er = list(set(chain.from_iterable(entity_roles.values())))
-
-categorized_persons = retrieve_spreadsheet_records("categories")
-categorized_persons = lowercase_headers(categorized_persons)
-
-# we convert these into a dataframe for easier selection
-cat_p_df = pd.DataFrame(categorized_persons)
-cat_p_df['fullname'] = cat_p_df.apply(lambda row: get_entity_name(entity=row), axis=1)
-
-
 
 namecolumns = ['{author}_surname','{author}_infix', '{author}_initials']
 t_authors = ['article_author1',
@@ -116,7 +95,7 @@ aut_country = {}
 
 entity_nationality = {get_entity_name(entity = record): record.get('prs_country') or 'unknown' for record in entity_records}
 
-
+surnms = [record['prs_surname'] for record in entity_records]
 entities = [', '.join(n.split(',  ')) for n in list(overview.index)]
 entity_nationality2 = cat_p_df.loc[cat_p_df.fullname.isin(entities)][['fullname', 'prs_country']]
 entity_nationality_sn = cat_p_df.loc[cat_p_df.prs_surname.isin(surnms)]

@@ -3,10 +3,11 @@ import networkx as nx
 import altair as alt
 import nx_altair as nxa
 from community import community_louvain
-from .data_wrangling import *
-from .network_analysis import *
-from .graph_community import community_layout
-from scripts.graphs_and_tables import entity_records, cat_p_df, record, relationship_records, entity_category
+from scripts.data_wrangling import *
+from scripts.network_analysis import *
+from scripts.graph_community import community_layout
+from scripts.datasets import entity_records, relationship_records, cat_p_df, entity_category, periods
+from scripts.graphs_and_tables import surnms
 
 roled = {'author':['article_author1_surname','article_author2_surname'],
  'preface_author':['preface_author1_surname','preface_author2_surname'],
@@ -17,16 +18,16 @@ roled = {'author':['article_author1_surname','article_author2_surname'],
  'editor':['editor_surname'],
  'unknown':['']}
 nms = [get_entity_name(entity=record) for record in entity_records]
-surnms = [record['prs_surname'] for record in entity_records]
 remp_entities = cat_p_df.loc[cat_p_df.fullname.isin(nms)]
 remp_entities_comp = cat_p_df.loc[cat_p_df.prs_surname.isin(surnms)]
 record_entities = defaultdict(list)
 entity_count = Counter()
 entity_role_count = Counter()
-entities = extract_record_entities(record)
+
 nodelist = []
 
 for ri, record in enumerate(relationship_records):
+    entities = extract_record_entities(record)
     record_entities[ri].append(entities)
     entity_count.update([entity['entity_name'] for entity in entities if 'entity_name' in entity])
     entity_role_count.update([entity['entity_role'] + ' ' + entity['entity_name'] for entity in entities if 'entity_name' in entity])
@@ -53,12 +54,6 @@ for rentity in record_entities:
 communities = {}
 for i in cat_p_df.organisation.unique():
      communities[i] = list(cat_p_df.loc[cat_p_df.organisation==i].fullname)
-
-periods = {
-    1950:{'start': 1950, 'end': 1959},
-    1960:{'start': 1960, 'end': 1969},
-    1970:{'start': 1970, 'end': 1985},
-}
 
 grphdict = {}
 

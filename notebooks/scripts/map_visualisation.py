@@ -1,15 +1,15 @@
 from iso3166 import countries
 import altair as alt
 import pandas as pd
-
-from .graphs_and_tables import cat_p_df, autlst
+from .datasets import cat_p_df
+from scripts.graphs_and_tables import autlst
+from scripts.network_overlap import decade_board_df
 
 c_nrs = cat_p_df.loc[cat_p_df.fullname.isin(autlst)][['fullname','prs_country']].prs_country.value_counts().rename_axis('country').reset_index(name='number')
 c_nrs.loc[c_nrs.country=='UK','country'] = 'GB'
-
 c_nrs['numeric'] = c_nrs.country.map(lambda x:int(countries.get(x).numeric))
 
-from scripts.network_overlap import decade_board_df
+
 per_decade_df = {}
 
 canonic_countries = {'prs_country':{'UK':'GB',
@@ -68,7 +68,7 @@ histogram = alt.Chart(c_nrs).mark_bar().encode(
     width=100
 )
 
-compound_chart = alt.hconcat(
+compound_aut_chart = alt.hconcat(
     aut_map,
     histogram
 ).configure_view(stroke=None)

@@ -7,14 +7,14 @@ import networkx as nx
 from networkx import Graph
 
 
-COLOR_MAP = {
-    'organisation': 'black',
-    'academic': 'blue',
-    'technocrat': 'red',
-    'diplomat': 'maroon',
-    'unknown': 'yellow',
-    '':'yellow'
-}
+# COLOR_MAP = {
+#     'organisation': 'black',
+#     'academic': 'blue',
+#     'technocrat': 'red',
+#     'diplomat': 'maroon',
+#     'unknown': 'yellow',
+#     '':'yellow'
+# }
 
 
 def generate_graph():

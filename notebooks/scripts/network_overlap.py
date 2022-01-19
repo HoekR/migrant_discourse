@@ -1,13 +1,9 @@
 import pandas as pd
 import numpy as np
 from itertools import chain
-
+from scripts.datasets import category_records
 from scripts.data_wrangling import *
-from scripts.network_analysis import retrieve_spreadsheet_records
-#from scripts.data_wrangling import highlight_decade
 
-
-# return list from series of comma-separated strings
 def chainer(s):
     return list(chain.from_iterable(s.fillna('').str.split(' && ')))
 
@@ -60,13 +56,7 @@ split_pub_df.journal = split_pub_df.journal.apply(acronym)
 split_pub_df =  split_pub_df[split_pub_df.article_author != '']
 
 
-entity_records = retrieve_spreadsheet_records(record_type='categories')
-# print('Number of records:' , len(entity_records))
-
-
-board_df = pd.DataFrame(entity_records)
-b_cols = {c:c.lower() for c in board_df.columns}
-board_df.rename(columns=b_cols, inplace=True)
+board_df = pd.DataFrame(category_records)
 board_df['article_author_index_name'] = board_df.apply(parse_author_index_name, axis=1)
 board_df['author_surname_initial'] = board_df.article_author_index_name.apply(parse_surname_initial)
 board_df['period'] = board_df.apply(lambda x: yr2cat(x), axis=1)
@@ -115,3 +105,8 @@ temp2_df.sort_values(by='author_surname_initial').style.apply(highlight_decade, 
 decade_board_df = board_df[org_cols+['prs_country']].merge(board_df[decade_cols].astype(int), left_index=True, right_index=True)
 decade_board_df = decade_board_df.rename(columns={'dataset': 'cat'})
 decade_board_df['in_board'] = 1
+
+n_all = temp_df.author_surname_initial.unique()
+n_authors = temp_df.loc[temp_df.in_pub>0].author_surname_initial.unique()
+n_board = temp_df.loc[temp_df.in_board>0].author_surname_initial.unique()
+n_board_and_author = temp_df.loc[(temp_df.in_board>0) & (temp_df.in_pub>0)].author_surname_initial.unique()
