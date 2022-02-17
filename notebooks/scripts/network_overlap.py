@@ -89,6 +89,8 @@ temp_pub_df = temp_pub_df.rename(columns={'dataset': 'cat'})
 temp_pub_df = temp_pub_df.groupby(['author_surname_initial', 'cat']).sum().reset_index()
 temp_pub_df['in_pub'] = 1
 # temp_pub_df
+
+# Hernoem temp_df naar iets inhoudelijks
 temp_df = pd.concat([temp_board_df.rename(columns={'organisation': 'cat'}).set_index('author_surname_initial'),
                      temp_pub_df.rename(columns={'dataset': 'cat'}).set_index('author_surname_initial')])
 
