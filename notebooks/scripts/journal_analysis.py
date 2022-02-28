@@ -2,9 +2,7 @@ import re
 import pandas as pd
 import altair as alt
 from collections import defaultdict, Counter
-from sklearn.feature_extraction.text import TfidfTransformer, TfidfVectorizer, CountVectorizer
-import matplotlib.pyplot as plt
-from IPython.core.display import display, HTML
+from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
 
 from scripts.data_wrangling import parse_surname, parse_surname_initial, map_dataset
 import scripts.content_analysis as ca
@@ -72,10 +70,10 @@ def make_topics(topic_lists):
 records_file = '../data/main-review-article-records.csv'
 
 columns = ['article_author',
-           'article_author_index_name', 
-           'article_title', 
-           'issue_pub_year', 
-           'publisher', 
+           'article_author_index_name',
+           'article_title',
+           'issue_pub_year',
+           'publisher',
            'article_type']
 
 df = pd.read_csv(records_file, usecols=columns)
@@ -178,26 +176,26 @@ topics_df_imr = get_topics_df(df_imr_research, topic_words)
 
 classified_terms = {}
 classified_terms['migration'] = {
-            'migration':['migratory', 'migrant', 'migrations','migrants', 'migración', 'migrantes',
-                        'migratoria', 'migraciones','migracion', 'migraciín','migrante', 'migracidn','migrationsverhalten',
-                       'arbeitsmigranten', 'migratori', 'migrazioni','migratoire', 'migrações', ],
-           'integration':['assimilation','integration','adaptation','absorption', 'naturalization','legalization',],
-           'emigration':['emigrants', 'emigrant', 'emigracion', 'emigración','emigrazione', 'emigrati','emigração',
-                        'emigratión',  'emigranti', 'lémigration', 'émigration','emigrate',],
-           'immigration':['immigrants','immigrant','inmigrant', 'immigración', 'immigrazione', 'immigrantes',
-                       'inmigrantes', 'inmigration', 'iimmigrants','inmigracion','inmigración','inmigrante', 'immigrate',
-                          'immigrati',],
-           'remigration':['remigration', 'transmigration', 'transmigrant','reemigracja','euromigration','postmigration','repatriation']}
+    'migration':['migratory', 'migrant', 'migrations','migrants', 'migración', 'migrantes',
+                 'migratoria', 'migraciones','migracion', 'migraciín','migrante', 'migracidn','migrationsverhalten',
+                 'arbeitsmigranten', 'migratori', 'migrazioni','migratoire', 'migrações', ],
+    'integration':['assimilation','integration','adaptation','absorption', 'naturalization','legalization',],
+    'emigration':['emigrants', 'emigrant', 'emigracion', 'emigración','emigrazione', 'emigrati','emigração',
+                  'emigratión',  'emigranti', 'lémigration', 'émigration','emigrate',],
+    'immigration':['immigrants','immigrant','inmigrant', 'immigración', 'immigrazione', 'immigrantes',
+                   'inmigrantes', 'inmigration', 'iimmigrants','inmigracion','inmigración','inmigrante', 'immigrate',
+                   'immigrati',],
+    'remigration':['remigration', 'transmigration', 'transmigrant','reemigracja','euromigration','postmigration','repatriation']}
 classified_terms['disciplines'] = {
-                    'sociology':['sociology', 'sociological', 'sociologique', 'sociologica',  'sociologia', 'sociolinguistics'],
-                    'statistics':['statistics','statistical'],
-                    'methods':['methodological','methodologique', 'metodologica','typology','topics','characteristics'],
-                    'psychology':['psychological','psychology'],
-                    'politics':['politics','political'],
-                    'anthropology':['ethnological', 'anthropology','anthropological',],
-                    'other':['ecology','ecological','ideology','ideological','mythology','demythologizing',
-                            'technology', 'epidemiology', 'tecnologia', 'technological','biological','cosmology', 'chronology', 'ideologies',
-                            'economics','ethnics','electronics','ethics']}
+    'sociology':['sociology', 'sociological', 'sociologique', 'sociologica',  'sociologia', 'sociolinguistics'],
+    'statistics':['statistics','statistical'],
+    'methods':['methodological','methodologique', 'metodologica','typology','topics','characteristics'],
+    'psychology':['psychological','psychology'],
+    'politics':['politics','political'],
+    'anthropology':['ethnological', 'anthropology','anthropological',],
+    'other':['ecology','ecological','ideology','ideological','mythology','demythologizing',
+             'technology', 'epidemiology', 'tecnologia', 'technological','biological','cosmology', 'chronology', 'ideologies',
+             'economics','ethnics','electronics','ethics']}
 
 
 temp_df = df[df.normalised_title.str.contains('latin')][['dataset', 'issue_decade']]
@@ -207,7 +205,7 @@ s_unstack = s.unstack('dataset')
 g = df.loc[df.author_surname_initial!=''].groupby(['author_surname_initial', 'dataset']).dataset.count()
 df_overlap = g.unstack('dataset').fillna(0.0)
 #print('number of authors with at least one article in both journals:',
-      # len(df_overlap[(df_overlap.REMP_IM > 0) & (df_overlap.IMR_research > 0)]))
+# len(df_overlap[(df_overlap.REMP_IM > 0) & (df_overlap.IMR_research > 0)]))
 
 overlappers = df_overlap[(df_overlap.REMP_IM > 0) & (df_overlap.IMR_research > 0)]
 # overlappers
@@ -224,11 +222,11 @@ r_topics_df = get_topics_df(fra_articles_remp, discipline_words)
 # we declare two different data sets for comparison:
 # - df_far is the dataset with frequently publishing authors
 # - remp_topics_df is the dataset of the whole of remp_im
-    
+
 df_far = fra_articles_remp
 general_topics = {'general': ['cause_effect', 'process', 'decision making', 'labour', 'skill',
-                 'legal', 'forced', 'immigration', 'emigration', 'migration', 'group',
-                  'identity']}
+                              'legal', 'forced', 'immigration', 'emigration', 'migration', 'group',
+                              'identity']}
 topics_far_df = get_topics_df(df_far, general_topics)
 df_remp_im = df[df.dataset == 'REMP_IM']
 remp_topics_df = get_topics_df(df_remp_im, general_topics)
@@ -271,21 +269,21 @@ remp_topics_df = get_topics_df(df_remp_im, general_topics)
 #
 
 # for key in discipline_words:
-    # for tword in classified_terms[key]:
+# for tword in classified_terms[key]:
 topic_words.update(discipline_words)
 def alt_topic_chart(topicwords=[], topicdf=None, var_name='topics', value_name='number', id_vars='index', title='', scheme='set1', dash=False):
     tpcwrds = topicwords
     selected_topic_words = {topic:topic_words[topic] for topic in tpcwrds}
     plot_df = get_topics_df(topicdf, selected_topic_words).drop('total', axis=1)
     molten = plot_df.reset_index().melt(value_vars=tpcwrds,
-                           var_name=var_name, value_name='number', id_vars='index') #.plot(figsize=(15,5), title="IM use of migration terms", xlabel="years", ylabel="proportion").legend(loc='center left',bbox_to_anchor=(1.0, 0.5))
+                                        var_name=var_name, value_name='number', id_vars='index') #.plot(figsize=(15,5), title="IM use of migration terms", xlabel="years", ylabel="proportion").legend(loc='center left',bbox_to_anchor=(1.0, 0.5))
     molten.rename(columns={"index":'years'}, inplace=True)
     chart1 = alt.Chart(molten).mark_line().encode(
         alt.X('years', type='nominal', axis=alt.Axis(tickCount=10)),
         alt.Y('number', type='quantitative'),
         color=alt.Color(f'{var_name}:O', scale=alt.Scale(scheme=f'{scheme}', reverse=True), title=f'{title}'),
         #strokeDash=f'{var_name}:O'
-        )
+    )
     chart1.properties(
         title=f'{title}'
     ).configure_title(

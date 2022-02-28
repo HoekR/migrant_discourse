@@ -3,7 +3,7 @@ from vega_datasets import data as vega_data
 
 from .datasets import read_person_categories
 from scripts.data_wrangling import get_author_country_counts
-from scripts.data_wrangling import get_per_decade_board
+from scripts.data_wrangling import get_per_decade_administrators
 
 
 def get_compound_author_chart():
@@ -52,13 +52,13 @@ def get_compound_author_chart():
     return compound_aut_chart
 
 # ========================
-# map people from boards
+# map people from admins
 # ========================
 
 
-def make_board_chart():
-    per_decade_df = get_per_decade_board()
-    board_charts = alt.hconcat()
+def make_admin_chart():
+    per_decade_df = get_per_decade_administrators()
+    admin_charts = alt.hconcat()
     sphere = alt.sphere()
     graticule = alt.graticule()
     # Source of land data
@@ -69,7 +69,7 @@ def make_board_chart():
                                     scale=alt.Scale(scheme='blues'),
                                     title="number",
                                     legend=None)
-        board_map = alt.layer(
+        admin_map = alt.layer(
             alt.Chart(sphere, title=f"{decade}").mark_geoshape(fill='white'),
             alt.Chart(graticule).mark_geoshape(stroke='white', strokeWidth=0.5),
             alt.Chart(source
@@ -94,13 +94,13 @@ def make_board_chart():
         )
 
         compound_chart = alt.hconcat(
-            board_map,
+            admin_map,
             histogram
         )
 
-        board_charts &= compound_chart
+        admin_charts &= compound_chart
 
-    board_charts.configure_axis(
+    admin_charts.configure_axis(
         labelFontSize=9, titleFontSize=16
     ).configure_view(stroke=None)
-    return board_charts
+    return admin_charts

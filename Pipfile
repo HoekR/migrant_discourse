@@ -9,6 +9,9 @@ networkx = "*"
 nltk = "*"
 pandas = "*"
 requests = "*"
+sklearn = "*"
+matplotlib = "*"
+ipython = "*"
 
 [dev-packages]
 

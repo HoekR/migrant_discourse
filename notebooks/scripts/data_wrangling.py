@@ -224,37 +224,39 @@ def aut_to_fn(cols):
 
 
 def read_publication_decades():
-    publications = get_publications_board_overlap()
-    publication_decade = publications[(publications.in_board == 1) & (publications.in_pub == 1)].drop(
-        ['in_board', 'in_pub'], axis=1)
+    publications = get_publication_author_administrator_overlap()
+    publication_decade = publications[(publications.in_admin == 1) & (publications.in_pub == 1)].drop(
+        ['in_admin', 'in_pub'], axis=1)
     publication_decade.sort_values(by='author_surname_initial').style.apply(highlight_decade, axis=1)
+    return publication_decade
     #
     # publications['total'] = publications[['1950', '190']].sum(axis=1).groupby('author_surname_initial').agg('sum')
 
 
-def get_board_decades():
-    board_df = read_board_dataframe()
+def get_administrator_decades():
+    admin_df = read_administrators_dataframe()
 
     decade_cols = [1950, 1960, 1970, 1980, 1990]
     org_cols = ['author_surname_initial', 'organisation']
-    decade_board_df = board_df[org_cols + ['prs_country']].merge(board_df[decade_cols].astype(int), left_index=True,
+    decade_admin_df = admin_df[org_cols + ['prs_country']].merge(admin_df[decade_cols].astype(int),
+                                                                 left_index=True,
                                                                  right_index=True)
-    decade_board_df = decade_board_df.rename(columns={'dataset': 'cat'})
-    decade_board_df['in_board'] = 1
-    return decade_board_df
+    decade_admin_df = decade_admin_df.rename(columns={'dataset': 'cat'})
+    decade_admin_df['in_admin'] = 1
+    return decade_admin_df
 
 
-def get_canonic_board():
-    decade_board_df = get_board_decades()
+def get_canonic_administrators():
+    decade_administrator_df = get_administrator_decades()
 
     canonic_countries = {'prs_country': {'UK': 'GB',
                                          'USA': 'US',
                                          'UK /AU': 'AU',
                                          '': 'US', }
                          }
-    canonic_board_df = decade_board_df.replace(canonic_countries)
-    canonic_board_df = canonic_board_df.loc[canonic_board_df.prs_country != 'unknown']
-    return canonic_board_df
+    canonic_administrator_df = decade_administrator_df.replace(canonic_countries)
+    canonic_administrator_df = canonic_administrator_df.loc[canonic_administrator_df.prs_country != 'unknown']
+    return canonic_administrator_df
 
 
 def get_author_country_counts():
@@ -268,12 +270,12 @@ def get_author_country_counts():
     return c_nrs
 
 
-def get_per_decade_board():
-    canonic_board_df = get_canonic_board()
+def get_per_decade_administrators():
+    canonic_admin_df = get_canonic_administrators()
     per_decade_df = {}
 
     for decade in range(1950, 2000, 10):
-        decade_df = canonic_board_df.loc[canonic_board_df[decade] > 0].prs_country.value_counts().rename_axis(
+        decade_df = canonic_admin_df.loc[canonic_admin_df[decade] > 0].prs_country.value_counts().rename_axis(
             'country').reset_index(name='number')
         decade_df['numeric'] = decade_df.country.map(lambda x: int(countries.get(x).numeric))
         per_decade_df[decade] = decade_df
@@ -342,12 +344,12 @@ def cutdecade(x, decade):
         return True
 
 
-def read_board_dataframe():
+def read_administrators_dataframe():
     category_records = dataset_api.read_person_category_records()
-    board_df = pd.DataFrame(category_records)
-    board_df['article_author_index_name'] = board_df.apply(parse_author_index_name, axis=1)
-    board_df['author_surname_initial'] = board_df.article_author_index_name.apply(parse_surname_initial)
-    board_df['period'] = board_df.apply(lambda x: yr2cat(x), axis=1)
+    admin_df = pd.DataFrame(category_records)
+    admin_df['article_author_index_name'] = admin_df.apply(parse_author_index_name, axis=1)
+    admin_df['author_surname_initial'] = admin_df.article_author_index_name.apply(parse_surname_initial)
+    admin_df['period'] = admin_df.apply(lambda x: yr2cat(x), axis=1)
 
     decades = {
         1950: (1950, 1960),
@@ -360,32 +362,32 @@ def read_board_dataframe():
 
     for key in decades:
         decade = decades[key]
-        board_df[key] = board_df.period.apply(lambda x: cutdecade(x, decade))
+        admin_df[key] = admin_df.period.apply(lambda x: cutdecade(x, decade))
 
     decade_cols = [1950, 1960, 1970, 1980, 1990]
     org_cols = ['author_surname_initial', 'organisation']
 
-    temp_board_df = board_df[org_cols].merge(board_df[decade_cols].astype(int), left_index=True, right_index=True)
-    temp_board_df = temp_board_df.rename(columns={'dataset': 'cat'})
-    temp_board_df['in_board'] = 1
-    board_df['in_board'] = temp_board_df.in_board
-    board_df[decade_cols] = board_df[decade_cols].astype(int)
+    temp_admin_df = admin_df[org_cols].merge(admin_df[decade_cols].astype(int), left_index=True, right_index=True)
+    temp_admin_df = temp_admin_df.rename(columns={'dataset': 'cat'})
+    temp_admin_df['in_admin'] = 1
+    admin_df['in_admin'] = temp_admin_df.in_admin
+    admin_df[decade_cols] = admin_df[decade_cols].astype(int)
 
-    return board_df
+    return admin_df
 
 
-def get_publication_author_board_overlap():
+def get_publication_author_administrator_overlap():
     # load the csv data into a data frame
     pub_df = get_per_author_publications()
 
-    board_df = read_board_dataframe()
+    admin_df = read_administrators_dataframe()
     # Hernoem temp_df naar iets inhoudelijks
-    publications = pd.concat([board_df.rename(columns={'organisation': 'cat'}).set_index('author_surname_initial'),
+    publications = pd.concat([admin_df.rename(columns={'organisation': 'cat'}).set_index('author_surname_initial'),
                               pub_df.rename(columns={'dataset': 'cat'}).set_index('author_surname_initial')])
 
     for name in publications.index:
         publications.loc[name, 'in_pub'] = publications.loc[name, 'in_pub'].max()
-        publications.loc[name, 'in_board'] = publications.loc[name, 'in_board'].max()
+        publications.loc[name, 'in_admin'] = publications.loc[name, 'in_admin'].max()
     publications = publications.reset_index()
     return publications
 
