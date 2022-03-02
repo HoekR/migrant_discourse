@@ -8,7 +8,6 @@ import numpy as np
 import pandas as pd
 from iso3166 import countries
 
-import scripts.datasets as dataset_api
 
 all_letters = string.ascii_letters + " .,;'-"
 
@@ -49,8 +48,7 @@ def clean_relation_records(relation_records):
     return cleanrecs
 
 
-def get_fullname_relations():
-    relationship_records = dataset_api.read_person_relationship_records()
+def get_fullname_relations(relationship_records):
     return add_fullname_columns(relationship_records)
 
 
@@ -163,8 +161,8 @@ def highlight_decade(row):
     return [f'background-color: {color}' if is_decade(col) and row[col] else '' for col in row.keys()]
 
 
-def lowercase_headers(records:list):
-    return [dict((k.lower(), v) for k,v in record.items()) for record in records]
+def lowercase_headers(records: list):
+    return [dict((k.lower(), v) for k, v in record.items()) for record in records]
 
 
 def get_entity_category(entity: dict, entity_category: dict):
@@ -194,14 +192,14 @@ def make_nodes(entity):
 
 def make_link_from_entity(entity, revnodelist, rempgraph):
     counter = []
-    authors = [n.get('entity_name') for n in entity if n.get('entity_role')=='article_author']
+    authors = [n.get('entity_name') for n in entity if n.get('entity_role') == 'article_author']
     links = []
     for aut in authors:
         autnr = revnodelist[aut]
         counter.append(autnr)
         for node in entity:
             if node.get('entity_role') != 'article_author':
-                if node.get('entity_role'): # we don't include titles
+                if node.get('entity_role'):  # we don't include titles
                     category = node.get('entity_role') or "unknown"
                     target = revnodelist[node.get('entity_name')]
                     graphnode = rempgraph.nodes()[target]
@@ -218,7 +216,7 @@ def make_link_from_entity(entity, revnodelist, rempgraph):
 
 def aut_to_fn(cols):
     if cols[0].strip() != '':
-        return f'{cols[0]+","} {cols[1]} {cols[2] or ""}'.strip()
+        return f'{cols[0] + ","} {cols[1]} {cols[2] or ""}'.strip()
     else:
         return None
 
@@ -233,8 +231,8 @@ def read_publication_decades():
     # publications['total'] = publications[['1950', '190']].sum(axis=1).groupby('author_surname_initial').agg('sum')
 
 
-def get_administrator_decades():
-    admin_df = read_administrators_dataframe()
+def get_administrator_decades(category_records):
+    admin_df = read_administrators_dataframe(category_records)
 
     decade_cols = [1950, 1960, 1970, 1980, 1990]
     org_cols = ['author_surname_initial', 'organisation']
@@ -246,8 +244,8 @@ def get_administrator_decades():
     return decade_admin_df
 
 
-def get_canonic_administrators():
-    decade_administrator_df = get_administrator_decades()
+def get_canonic_administrators(category_records):
+    decade_administrator_df = get_administrator_decades(category_records)
 
     canonic_countries = {'prs_country': {'UK': 'GB',
                                          'USA': 'US',
@@ -259,10 +257,10 @@ def get_canonic_administrators():
     return canonic_administrator_df
 
 
-def get_author_country_counts():
-    author_list = get_author_list()
+def get_author_country_counts(cat_p_df, relationship_records):
+    author_list = get_author_list(relationship_records)
 
-    cat_p_df = dataset_api.read_person_categories()
+    # cat_p_df = dataset_api.read_person_categories()
     c_nrs = cat_p_df.loc[cat_p_df.fullname.isin(author_list)][
         ['fullname', 'prs_country']].prs_country.value_counts().rename_axis('country').reset_index(name='number')
     c_nrs.loc[c_nrs.country == 'UK', 'country'] = 'GB'
@@ -318,8 +316,8 @@ def split_publication_per_author(pub_df):
     return split_pub_df.reset_index(drop=True)
 
 
-def get_per_author_publications():
-    pub_df = dataset_api.read_publications()
+def get_per_author_publications(pub_df):
+    # pub_df = dataset_api.read_publications()
     # Code adapted from https://stackoverflow.com/questions/50731229/split-cell-into-multiple-rows-in-pandas-dataframe
     pub_df['dataset'] = pub_df.apply(lambda x: map_dataset(x['publisher'], x['article_type']), axis=1)
     # split articles on authors, one row per author per article
@@ -344,8 +342,7 @@ def cutdecade(x, decade):
         return True
 
 
-def read_administrators_dataframe():
-    category_records = dataset_api.read_person_category_records()
+def read_administrators_dataframe(category_records):
     admin_df = pd.DataFrame(category_records)
     admin_df['article_author_index_name'] = admin_df.apply(parse_author_index_name, axis=1)
     admin_df['author_surname_initial'] = admin_df.article_author_index_name.apply(parse_surname_initial)
@@ -376,11 +373,11 @@ def read_administrators_dataframe():
     return admin_df
 
 
-def get_publication_author_administrator_overlap():
+def get_publication_author_administrator_overlap(pub_df, category_records):
     # load the csv data into a data frame
-    pub_df = get_per_author_publications()
+    pub_df = get_per_author_publications(pub_df)
 
-    admin_df = read_administrators_dataframe()
+    admin_df = read_administrators_dataframe(category_records)
     # Hernoem temp_df naar iets inhoudelijks
     publications = pd.concat([admin_df.rename(columns={'organisation': 'cat'}).set_index('author_surname_initial'),
                               pub_df.rename(columns={'dataset': 'cat'}).set_index('author_surname_initial')])
@@ -392,8 +389,8 @@ def get_publication_author_administrator_overlap():
     return publications
 
 
-def generate_overview() -> pd.DataFrame:
-    relationship_records = get_fullname_relations()
+def generate_overview(relationship_records) -> pd.DataFrame:
+    relationship_records = add_fullname_columns(relationship_records)
     cleanrecs = clean_relation_records(relationship_records)
     cnted = {}
     for key in author_name_column_map:
@@ -409,13 +406,14 @@ def generate_overview() -> pd.DataFrame:
     return overview
 
 
-def get_author_list():
-    overview = generate_overview()
-    entity_category = dataset_api.read_entity_categories()
-    cat_p_df = dataset_api.read_person_categories()
+def get_author_list(relationship_records):
+    overview = generate_overview(relationship_records)
     auts = overview.loc[overview.authors > 0]
     autlst = list([', '.join(aut.split(',  ')) for aut in auts.index])
     return autlst
+
+
+def junkyard():
     aut_category = {}
     for aut in auts.index:
         n = ', '.join(aut.split(',  '))
@@ -426,5 +424,3 @@ def get_author_list():
     for aut in auts.index:
         n = ', '.join(aut.split(',  '))
         aut_category[n] = entity_category.get(n) or 'unknown'
-
-
